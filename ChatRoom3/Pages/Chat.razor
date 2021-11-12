@@ -1,0 +1,66 @@
+﻿@using System.Collections.Generic
+@using Models
+@code {
+
+    string newMessage;
+
+    List<Message> Messages = new List<Message>()
+    {
+        new Message {Body = "Quisque cursus eros vitae mauris rhoncus. " },
+        new Message {Body = "Mauris non blandit ipsum, sed efficitur nisl. id ultrices turpis tristique. "},
+        new Message {Body = "Id ultrices turpis tristique."},
+        new Message {Body = "Quisque cursus eros vitae mauris rhoncus, id ultrices turpis tristique. "},
+
+    };
+
+    private void addMessage(string message)
+    {
+        Messages.Add(new Message {Body = message});
+    }
+
+}
+
+
+<div class="container border border-5 border-dark">
+    <div class="row rounded-top bg-dark">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-2 p-2">
+                    <div class="text-center">
+                        <img src="https://picsum.photos/id/237/75/75" class="rounded-circle border border-5 border-light" alt="profile">
+                    </div>
+                </div>
+                <div class="col p-2">
+                    <span class="text-light">Simon West</span> <br />
+                    <span class="small text-light mt-3">19 new messages</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col h-25">
+            <div class="container-fluid">
+                @foreach (Message message in Messages)
+                {
+                    <div class="row">
+                        <div class="col m-4 p-3 bg-info rounded-pill">
+                            <span class="text-light">@message.Body</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="message" @bind="@newMessage" aria-label="message" aria-describedby="button">
+                <button class="btn btn-dark" type="button" id="txtMessage"  @onclick="() => addMessage(newMessage)">Send</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
